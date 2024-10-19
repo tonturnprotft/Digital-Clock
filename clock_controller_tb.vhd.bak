@@ -1,0 +1,145 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity clock_controller_tb is
+-- Testbench has no ports
+end clock_controller_tb;
+
+architecture Behavioral of clock_controller_tb is
+
+    -- Component Declaration for clock_controller
+    component clock_controller is
+        Port (
+            clk_in        : in  STD_LOGIC;
+            reset         : in  STD_LOGIC;
+            mode          : in  STD_LOGIC;
+            set           : in  STD_LOGIC;
+            up_down       : in  STD_LOGIC;
+            seg_hour_high : out STD_LOGIC_VECTOR(6 downto 0);
+            seg_hour_low  : out STD_LOGIC_VECTOR(6 downto 0);
+            seg_min_high  : out STD_LOGIC_VECTOR(6 downto 0);
+            seg_min_low   : out STD_LOGIC_VECTOR(6 downto 0)
+            -- Uncomment if you added these outputs
+            -- hour_count_out : out unsigned(4 downto 0);
+            -- min_count_out  : out unsigned(5 downto 0)
+        );
+    end component;
+
+    -- Signals to connect to the clock_controller
+    signal clk_in        : STD_LOGIC := '0';
+    signal reset         : STD_LOGIC := '0';
+    signal mode          : STD_LOGIC := '1';
+    signal set           : STD_LOGIC := '1';
+    signal up_down       : STD_LOGIC := '1';
+    signal seg_hour_high : STD_LOGIC_VECTOR(6 downto 0);
+    signal seg_hour_low  : STD_LOGIC_VECTOR(6 downto 0);
+    signal seg_min_high  : STD_LOGIC_VECTOR(6 downto 0);
+    signal seg_min_low   : STD_LOGIC_VECTOR(6 downto 0);
+
+    -- Clock period constant
+    constant CLK_PERIOD : time := 10 ns;
+
+    -- Optional signals for observing internal counts
+    -- signal hour_count_out : unsigned(4 downto 0);
+    -- signal min_count_out  : unsigned(5 downto 0);
+    -- signal hour_value : integer;
+    -- signal min_value  : integer;
+
+begin
+
+    -- Instantiate the Unit Under Test (UUT)
+    uut: clock_controller
+        port map (
+            clk_in        => clk_in,
+            reset         => reset,
+            mode          => mode,
+            set           => set,
+            up_down       => up_down,
+            seg_hour_high => seg_hour_high,
+            seg_hour_low  => seg_hour_low,
+            seg_min_high  => seg_min_high,
+            seg_min_low   => seg_min_low
+            -- Uncomment if you added these outputs
+            -- hour_count_out => hour_count_out,
+            -- min_count_out  => min_count_out
+        );
+
+    -- Optional assignments for monitoring
+    -- hour_value <= to_integer(hour_count_out);
+    -- min_value  <= to_integer(min_count_out);
+
+    -- Clock generation process
+    clk_process : process
+    begin
+        while True loop
+            clk_in <= '0';
+            wait for CLK_PERIOD / 2;
+            clk_in <= '1';
+            wait for CLK_PERIOD / 2;
+        end loop;
+    end process;
+
+    -- Stimulus process
+    stim_proc: process
+    begin
+        -- Initialize Inputs
+        reset <= '0';
+        mode  <= '1';
+        set   <= '1';
+        up_down <= '1';  -- Start with increment mode
+
+        -- Wait for global reset
+        wait for 100 ns;
+        reset <= '1';  -- Release reset
+        wait for 100 ns;
+
+        -- Simulate normal operation
+        wait for 1 ms;  -- Simulate 1 millisecond
+
+        -- Enter SET_MINUTE mode
+        mode <= '0';  -- Press mode button
+        wait for 20 ns;
+        mode <= '1';  -- Release mode button
+        wait for 100 ns;
+
+        -- Increment minutes
+        set <= '0';  -- Press set button
+        wait for 20 ns;
+        set <= '1';  -- Release set button
+        wait for 100 ns;
+
+        -- Decrement minutes
+        up_down <= '0';
+        set <= '0';
+        wait for 20 ns;
+        set <= '1';
+        wait for 100 ns;
+
+        -- Enter SET_HOUR mode
+        mode <= '0';
+        wait for 20 ns;
+        mode <= '1';
+        wait for 100 ns;
+
+        -- Increment hours
+        up_down <= '1';
+        set <= '0';
+        wait for 20 ns;
+        set <= '1';
+        wait for 100 ns;
+
+        -- Return to NORMAL mode
+        mode <= '0';
+        wait for 20 ns;
+        mode <= '1';
+        wait for 100 ns;
+
+        -- Simulate normal operation
+        wait for 2 ms;
+
+        -- Finish simulation
+        wait;
+    end process;
+
+end Behavioral;

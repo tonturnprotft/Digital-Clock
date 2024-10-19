@@ -1,0 +1,6 @@
+
+State Machine - |clock_controller|current_state
+Name current_state.SET_HOUR current_state.SET_MINUTE current_state.NORMAL 
+current_state.NORMAL 0 0 0 
+current_state.SET_MINUTE 0 1 1 
+current_state.SET_HOUR 1 0 1 

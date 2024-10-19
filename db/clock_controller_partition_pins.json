@@ -1,0 +1,153 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "led_out",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_high[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_high[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_high[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_high[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_high[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_high[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_low[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_low[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_low[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_low[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_low[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_low[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_hour_low[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_high[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_high[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_high[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_high[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_high[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_high[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_high[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_low[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_low[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_low[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_low[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_low[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_low[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_min_low[6]",
+					"strict" : false
+				},
+				{
+					"name" : "dp_blink_min",
+					"strict" : false
+				},
+				{
+					"name" : "sw1",
+					"strict" : false
+				},
+				{
+					"name" : "sw0",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "up_down",
+					"strict" : false
+				},
+				{
+					"name" : "clk_in",
+					"strict" : false
+				},
+				{
+					"name" : "set",
+					"strict" : false
+				},
+				{
+					"name" : "mode",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
